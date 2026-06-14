@@ -32,6 +32,11 @@
     overflow-x: hidden;
   }
 
+  /* Fluid container width on all screens */
+  .max-w-7xl {
+    width: 100%;
+  }
+
   /* Custom clean scrollbars */
   ::-webkit-scrollbar {
     width: 6px;
@@ -46,6 +51,11 @@
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #3c4257;
+  }
+
+  /* Horizontal scrollbar hidden but functional for tab overflow */
+  .overflow-x-auto::-webkit-scrollbar {
+    height: 2px;
   }
 }
 

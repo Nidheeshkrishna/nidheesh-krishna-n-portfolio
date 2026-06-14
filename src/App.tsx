@@ -60,13 +60,22 @@ export default function App() {
     }
   }, []);
 
-  const handleDownloadCV = () => {
-    const link = document.createElement("a");
-    link.href = "/assets/Nidheesh_Krishna_CV.pdf";
-    link.download = "Nidheesh_Krishna_CV.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleDownloadCV = async () => {
+    // Try to fetch the PDF first; if it exists, download it directly
+    try {
+      const res = await fetch("/assets/Nidheesh_Krishna_CV.pdf", { method: "HEAD" });
+      if (res.ok) {
+        const link = document.createElement("a");
+        link.href = "/assets/Nidheesh_Krishna_CV.pdf";
+        link.download = "Nidheesh_Krishna_CV.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        return;
+      }
+    } catch (_) {}
+    // Fallback: trigger browser print dialog (user can Save as PDF)
+    window.print();
   };
 
   const handleSendEmailSubmit = (e: React.FormEvent) => {
@@ -228,16 +237,16 @@ export default function App() {
         
         {/* HERO SECTION DECK */}
         <motion.div 
-          className="mb-16 max-w-4xl"
+          className="mb-10 md:mb-16 w-full"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-[#07080c]/60 border border-[#1b1c2b]/50 p-6 md:p-8 rounded-3xl backdrop-blur-sm relative overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center bg-[#07080c]/60 border border-[#1b1c2b]/50 p-5 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl backdrop-blur-sm relative overflow-hidden">
             <div className="absolute top-0 left-0 w-32 h-32 bg-gold-500/5 rounded-full blur-3xl pointer-events-none" />
             
             {/* Hero text & badges */}
-            <div className="md:col-span-8 space-y-6 order-2 md:order-1">
+            <div className="md:col-span-8 space-y-4 md:space-y-6 order-2 md:order-1">
               
               <motion.div 
                 className="inline-flex items-center space-x-2.5 bg-gradient-to-r from-gold-900/40 to-[#12131c] border border-gold-500/25 px-4 py-2 rounded-full"
@@ -249,7 +258,7 @@ export default function App() {
 
               <div className="space-y-3">
                 <motion.h1 
-                  className="text-4xl md:text-5xl font-serif text-white tracking-wide font-medium leading-[1.12]"
+                  className="text-3xl sm:text-4xl md:text-5xl font-serif text-white tracking-wide font-medium leading-[1.12]"
                   variants={itemVariants}
                 >
                   Crafting Premium <br />
@@ -265,41 +274,41 @@ export default function App() {
 
               {/* Quick Experience Badges */}
               <motion.div 
-                className="grid grid-cols-3 gap-3 max-w-md pt-2 font-mono text-center"
+                className="grid grid-cols-3 gap-2 sm:gap-3 pt-1 sm:pt-2 font-mono text-center"
                 variants={itemVariants}
               >
                 <motion.div 
-                  className="bg-[#0e0f14] border border-gray-900 p-3 rounded-2xl transition-all"
+                  className="bg-[#0e0f14] border border-gray-900 p-2 sm:p-3 rounded-xl sm:rounded-2xl transition-all"
                   whileHover={{ y: -4, scale: 1.02, borderColor: "#c9a244", boxShadow: "0 4px 25px rgba(181, 137, 43, 0.12)" }}
                 >
-                  <div className="text-xs text-gray-400 uppercase">Experience</div>
-                  <div className="text-[11px] sm:text-xs font-bold text-gold-400 mt-1">5+ Yrs Flutter</div>
+                  <div className="text-[10px] sm:text-xs text-gray-400 uppercase">Experience</div>
+                  <div className="text-[10px] sm:text-xs font-bold text-gold-400 mt-1">5+ Yrs Flutter</div>
                 </motion.div>
                 <motion.div 
-                  className="bg-[#0e0f14] border border-gray-900 p-3 rounded-2xl transition-all"
+                  className="bg-[#0e0f14] border border-gray-900 p-2 sm:p-3 rounded-xl sm:rounded-2xl transition-all"
                   whileHover={{ y: -4, scale: 1.02, borderColor: "#c9a244", boxShadow: "0 4px 25px rgba(181, 137, 43, 0.12)" }}
                 >
-                  <div className="text-xs text-gray-400 uppercase">Live Stores</div>
-                  <div className="text-[11px] sm:text-xs font-bold text-gold-400 mt-1">12+ Apps</div>
+                  <div className="text-[10px] sm:text-xs text-gray-400 uppercase">Live Stores</div>
+                  <div className="text-[10px] sm:text-xs font-bold text-gold-400 mt-1">12+ Apps</div>
                 </motion.div>
                 <motion.div 
-                  className="bg-[#0e0f14] border border-gray-900 p-3 rounded-2xl transition-all"
+                  className="bg-[#0e0f14] border border-gray-900 p-2 sm:p-3 rounded-xl sm:rounded-2xl transition-all"
                   whileHover={{ y: -4, scale: 1.02, borderColor: "#c9a244", boxShadow: "0 4px 25px rgba(181, 137, 43, 0.12)" }}
                 >
-                  <div className="text-xs text-gray-400 uppercase">Performance</div>
-                  <div className="text-[11px] sm:text-xs font-bold text-gold-400 mt-1">120Hz Fluent</div>
+                  <div className="text-[10px] sm:text-xs text-gray-400 uppercase">Performance</div>
+                  <div className="text-[10px] sm:text-xs font-bold text-gold-400 mt-1">120Hz Fluent</div>
                 </motion.div>
               </motion.div>
 
               {/* Core Hero Quick Action Trigger Buttons */}
               <motion.div 
-                className="relative flex flex-wrap gap-3 pt-6"
+                className="relative flex flex-wrap gap-2 sm:gap-3 pt-4 sm:pt-6"
                 variants={itemVariants}
               >
-                <div className="relative inline-block text-left">
+                <div className="relative inline-block text-left w-full sm:w-auto">
                   <button
                     onClick={() => setIsMeetMenuOpen(!isMeetMenuOpen)}
-                    className="bg-gradient-to-r from-gold-300 to-gold-500 hover:from-gold-400 hover:to-gold-600 text-black font-bold font-mono text-[11px] px-5 py-3 rounded-xl transition-all shadow-md shadow-gold-500/10 cursor-pointer flex items-center space-x-2 uppercase tracking-wider"
+                    className="w-full sm:w-auto bg-gradient-to-r from-gold-300 to-gold-500 hover:from-gold-400 hover:to-gold-600 text-black font-bold font-mono text-[11px] px-5 py-3 rounded-xl transition-all shadow-md shadow-gold-500/10 cursor-pointer flex items-center justify-center sm:justify-start space-x-2 uppercase tracking-wider"
                   >
                     <Video className="w-4 h-4 text-black" />
                     <span>Schedule / Start Meet</span>
@@ -320,7 +329,7 @@ export default function App() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 10, scale: 0.95 }}
                           transition={{ duration: 0.15 }}
-                          className="absolute left-0 mt-2 w-80 rounded-2xl bg-[#0b0c11] border border-gold-500/25 shadow-2xl p-4 space-y-3 z-50 backdrop-blur-md"
+                          className="absolute left-0 mt-2 w-[calc(100vw-2rem)] sm:w-80 max-w-sm rounded-2xl bg-[#0b0c11] border border-gold-500/25 shadow-2xl p-4 space-y-3 z-50 backdrop-blur-md"
                         >
                           <div className="border-b border-gray-900 pb-2">
                             <h4 className="text-[10px] font-mono text-gold-400 uppercase tracking-widest font-bold">Instant Dispatch Hub</h4>
@@ -367,7 +376,7 @@ export default function App() {
                 {/* Direct Send Email Trigger Button */}
                 <button
                   onClick={() => setIsEmailModalOpen(true)}
-                  className="bg-[#0f1118]/80 hover:bg-[#151722] text-gold-300 hover:text-gold-200 border border-gold-500/20 hover:border-gold-500/40 font-bold font-mono text-[11px] px-5 py-3 rounded-xl transition-all cursor-pointer flex items-center space-x-2 uppercase tracking-wider"
+                  className="w-full sm:w-auto bg-[#0f1118]/80 hover:bg-[#151722] text-gold-300 hover:text-gold-200 border border-gold-500/20 hover:border-gold-500/40 font-bold font-mono text-[11px] px-5 py-3 rounded-xl transition-all cursor-pointer flex items-center justify-center sm:justify-start space-x-2 uppercase tracking-wider"
                 >
                   <Mail className="w-4 h-4 text-gold-400" />
                   <span>Send Email</span>
@@ -378,11 +387,11 @@ export default function App() {
 
             {/* Profile Avatar Frame with animation */}
             <motion.div 
-              className="md:col-span-4 order-1 md:order-2 flex justify-center md:justify-end"
+              className="md:col-span-4 order-1 md:order-2 flex justify-center"
               variants={itemVariants}
             >
               <motion.div 
-                className="relative w-44 h-44 sm:w-48 sm:h-48 md:w-44 md:h-44 lg:w-48 lg:h-48 rounded-3xl bg-gradient-to-br from-[#9c6e20] via-luxury-border to-[#d9be6d] p-1 shadow-2xl shadow-gold-900/10 cursor-pointer"
+                className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-48 lg:h-48 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[#9c6e20] via-luxury-border to-[#d9be6d] p-1 shadow-2xl shadow-gold-900/10 cursor-pointer"
                 whileHover={{ scale: 1.03, rotate: 1 }}
                 transition={{ type: "spring", stiffness: 200, damping: 15 }}
               >
@@ -415,7 +424,7 @@ export default function App() {
         {/* SECTION BLOCK: PORTFOLIO MAIN WORKSPACE */}
         <div className="w-full relative z-10" id="portfolio-workspace">
           
-          <div className="space-y-8 bg-[#07080b]/40 border border-[#1b1c2b]/30 p-6 md:p-8 rounded-3xl backdrop-blur-md">
+          <div className="space-y-6 md:space-y-8 bg-[#07080b]/40 border border-[#1b1c2b]/30 p-4 sm:p-6 md:p-8 rounded-2xl md:rounded-3xl backdrop-blur-md">
               
               {/* Elegant Tab buttons selector */}
               <div className="flex border-b border-[#1b1c2b] space-x-6 text-xs font-mono uppercase pb-px shrink-0 overflow-x-auto relative">
@@ -497,7 +506,7 @@ export default function App() {
                         </div>
 
                         {/* Horizontal / Grid of all 7 products */}
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
                           {PROJECTS_DATA.map((proj) => {
                             const isSelected = proj.id === selectedProjectId;
                             return (
@@ -582,7 +591,7 @@ export default function App() {
                             {/* Modular feature list developed */}
                             <div className="space-y-2.5 pt-2">
                               <span className="text-[9px] font-mono text-gray-500 uppercase tracking-widest block">Signature Performance Achievements:</span>
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                                 {currentProject.features.map((feat, idx) => (
                                   <motion.div 
                                     key={idx} 
