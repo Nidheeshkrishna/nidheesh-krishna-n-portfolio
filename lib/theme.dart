@@ -71,3 +71,14 @@ const kGoldTextGradient = LinearGradient(
   end: Alignment.bottomRight,
   colors: [Color(0xFFf4edd0), AppColors.gold300, AppColors.gold500],
 );
+
+// =====================================================================
+// Responsive font-size helpers — scale with screen width
+// =====================================================================
+double _fontScale(double width) => (width / 1200).clamp(0.70, 1.0);
+
+double rfs(BuildContext context, double desktopSize) =>
+    desktopSize * _fontScale(MediaQuery.of(context).size.width);
+
+double rw(double width, double desktopSize) =>
+    desktopSize * _fontScale(width);

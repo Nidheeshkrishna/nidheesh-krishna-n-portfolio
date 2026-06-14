@@ -61,20 +61,20 @@ export default function App() {
   }, []);
 
   const handleDownloadCV = async () => {
-    // Try to fetch the PDF first; if it exists, download it directly
+    const now = new Date();
+    const ts = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}_${String(now.getHours()).padStart(2,'0')}${String(now.getMinutes()).padStart(2,'0')}${String(now.getSeconds()).padStart(2,'0')}`;
     try {
       const res = await fetch("/assets/Nidheesh_Krishna_CV.pdf", { method: "HEAD" });
       if (res.ok) {
         const link = document.createElement("a");
         link.href = "/assets/Nidheesh_Krishna_CV.pdf";
-        link.download = "Nidheesh_Krishna_CV.pdf";
+        link.download = `Nidheesh_Krishna_CV_${ts}.pdf`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
         return;
       }
     } catch (_) {}
-    // Fallback: trigger browser print dialog (user can Save as PDF)
     window.print();
   };
 
@@ -146,7 +146,7 @@ export default function App() {
 
       {/* Main Luxury Header */}
       <header className="border-b border-luxury-border/30 bg-[#07080b]/90 sticky top-0 z-40 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
           
           <div className="flex items-center space-x-3">
             <div className="relative w-10.5 h-10.5 rounded-xl bg-gradient-to-tr from-[#9c6e20] to-[#d9be6d] p-[1.5px] overflow-hidden shadow-md shadow-gold-500/10 shrink-0">
@@ -329,7 +329,7 @@ export default function App() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 10, scale: 0.95 }}
                           transition={{ duration: 0.15 }}
-                          className="absolute left-0 mt-2 w-[calc(100vw-2rem)] sm:w-80 max-w-sm rounded-2xl bg-[#0b0c11] border border-gold-500/25 shadow-2xl p-4 space-y-3 z-50 backdrop-blur-md"
+                          className="absolute left-0 right-auto mt-2 w-[calc(100vw-2rem)] sm:w-80 max-w-sm rounded-2xl bg-[#0b0c11] border border-gold-500/25 shadow-2xl p-4 space-y-3 z-50 backdrop-blur-md sm:left-0"
                         >
                           <div className="border-b border-gray-900 pb-2">
                             <h4 className="text-[10px] font-mono text-gold-400 uppercase tracking-widest font-bold">Instant Dispatch Hub</h4>
@@ -436,7 +436,8 @@ export default function App() {
                       : "text-gray-500 hover:text-gray-300"
                   }`}
                 >
-                  1. 6 Mobile Masterpieces Explorer
+                  <span className="hidden sm:inline">1. 6 Mobile Masterpieces Explorer</span>
+                  <span className="sm:hidden">1. Projects</span>
                   {activeFeature === "architecture" && (
                     <motion.div 
                       layoutId="activeTabUnderline"
@@ -454,7 +455,8 @@ export default function App() {
                       : "text-gray-500 hover:text-gray-300"
                   }`}
                 >
-                  2. Full Career Experience Timeline
+                  <span className="hidden sm:inline">2. Full Career Experience Timeline</span>
+                  <span className="sm:hidden">2. Resume</span>
                   {activeFeature === "resume" && (
                     <motion.div 
                       layoutId="activeTabUnderline"
@@ -472,7 +474,8 @@ export default function App() {
                       : "text-gray-500 hover:text-gray-300"
                   }`}
                 >
-                  3. Interactive AI Chat
+                  <span className="hidden sm:inline">3. Interactive AI Chat</span>
+                  <span className="sm:hidden">3. AI Chat</span>
                   {activeFeature === "copilot" && (
                     <motion.div 
                       layoutId="activeTabUnderline"
@@ -670,11 +673,12 @@ export default function App() {
           <p className="uppercase tracking-[0.2em] text-gold-400/80">
             NIDHEESH KRISHNA N &bull; EXCLUSIVE PORTFOLIO WORKSPACE
           </p>
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2.5 text-[11px]">
-            <span>Phone: +91 9946185174</span>
-            <span className="text-gray-800">|</span>
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-[11px]">
+            <span className="after:content-['|'] after:text-gray-800 after:ml-4 after:hidden sm:after:inline">Phone: +91 9946185174</span>
             <span>Email: nidheeshkrishnap@outlook.com</span>
-            <span className="text-gray-800">|</span>
+            <span className="hidden sm:inline">LinkedIn: linkedin.com/in/nidheesh-krishna-n-6a141315a</span>
+          </div>
+          <div className="flex flex-wrap justify-center gap-2 text-[11px] sm:hidden">
             <span>LinkedIn: linkedin.com/in/nidheesh-krishna-n-6a141315a</span>
           </div>
           <p className="text-[10px] text-gray-700 pt-2">
@@ -685,7 +689,7 @@ export default function App() {
 
       {/* Floating Premium WhatsApp Contact Widget */}
       <motion.div 
-        className="fixed bottom-6 right-6 z-50 pointer-events-auto"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 pointer-events-auto"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: "spring", stiffness: 180, damping: 15, delay: 1.2 }}
@@ -704,7 +708,7 @@ export default function App() {
             <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-emerald-300 animate-ping" />
             <MessageCircle className="w-4 h-4 text-white relative z-10" />
           </div>
-          <span className="relative z-10 uppercase">Message Nidheesh</span>
+          <span className="relative z-10 uppercase hidden sm:inline">Message Nidheesh</span>
         </motion.a>
       </motion.div>
 
@@ -727,7 +731,7 @@ export default function App() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: "spring", stiffness: 220, damping: 20 }}
-              className="bg-[#0b0c11] border border-gold-500/30 w-full max-w-lg rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl relative z-10 overflow-hidden"
+              className="bg-[#0b0c11] border border-gold-500/30 w-full max-w-lg rounded-2xl sm:rounded-3xl p-4 sm:p-8 space-y-5 sm:space-y-6 shadow-2xl relative z-10 overflow-hidden mx-2 sm:mx-0"
             >
               {/* Decorative top illumination */}
               <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-gold-400 to-transparent" />

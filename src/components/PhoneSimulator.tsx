@@ -377,7 +377,7 @@ export default function PhoneSimulator({ selectedProjectId, onProjectChanged }: 
   };
 
   return (
-    <div id="phone-simulator-frame" className="relative mx-auto w-[360px] h-[720px] rounded-[50px] border-[12px] border-[#1e2029] bg-[#090a0e] shadow-2xl overflow-hidden ring-4 ring-offset-2 ring-offset-black ring-gold-500/10">
+    <div id="phone-simulator-frame" className="relative mx-auto w-full max-w-[380px] h-[720px] max-h-[90vh] rounded-[30px] sm:rounded-[50px] border-[8px] sm:border-[12px] border-[#1e2029] bg-[#090a0e] shadow-2xl overflow-hidden ring-2 sm:ring-4 ring-offset-1 sm:ring-offset-2 ring-offset-black ring-gold-500/10">
       
       {/* Device Status Bar / Notch */}
       <div className="absolute top-0 inset-x-0 h-7 bg-black z-30 flex items-center justify-between px-6 text-[11px] font-medium text-gray-400">

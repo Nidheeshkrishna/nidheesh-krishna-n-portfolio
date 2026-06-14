@@ -154,7 +154,9 @@ class _PortfolioHomeState extends State<PortfolioHome> {
   }
 
   Future<void> _downloadCV() async {
-    downloadFile('assets/assets/Nidheesh_Krishna_CV.pdf', 'Nidheesh_Krishna_CV.pdf');
+    final now = DateTime.now();
+    final ts = '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}_${now.hour.toString().padLeft(2, '0')}${now.minute.toString().padLeft(2, '0')}${now.second.toString().padLeft(2, '0')}';
+    downloadFile('assets/assets/Nidheesh_Krishna_CV.pdf', 'Nidheesh_Krishna_CV_$ts.pdf');
   }
 }
 
@@ -199,8 +201,8 @@ class _Header extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('NIDHEESH KRISHNA N', style: GoogleFonts.jetBrainsMono(fontSize: 13, fontWeight: FontWeight.bold, color: Colors.white, letterSpacing: 1.2)),
-                  Text('SENIOR FLUTTER ARCHITECT & DEV', style: GoogleFonts.jetBrainsMono(fontSize: 9, color: AppColors.gold400, letterSpacing: 2.0)),
+                  Text('NIDHEESH KRISHNA N', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 13), fontWeight: FontWeight.bold, color: Colors.white, letterSpacing: 1.2)),
+                  Text('SENIOR FLUTTER ARCHITECT & DEV', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 9), color: AppColors.gold400, letterSpacing: 2.0)),
                 ],
               ),
               const Spacer(),
@@ -217,7 +219,7 @@ class _Header extends StatelessWidget {
                     child: Row(children: [
                       const Icon(Icons.link, color: AppColors.gold400, size: 14),
                       const SizedBox(width: 6),
-                      Text('LinkedIn Profile', style: GoogleFonts.inter(fontSize: 12, color: Colors.grey[400])),
+                      Text('LinkedIn Profile', style: GoogleFonts.inter(fontSize: rfs(context, 12), color: Colors.grey[400])),
                     ]),
                   ),
                 ),
@@ -233,7 +235,7 @@ class _Header extends StatelessWidget {
                     child: Row(children: [
                       const Icon(Icons.download, color: Colors.black, size: 14),
                       const SizedBox(width: 6),
-                      Text('DOWNLOAD', style: GoogleFonts.jetBrainsMono(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.black)),
+                      Text('DOWNLOAD', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), fontWeight: FontWeight.bold, color: Colors.black)),
                     ]),
                   ),
                 ).animate(onPlay: (c) => c.repeat(reverse: true)).scale(begin: const Offset(1,1), end: const Offset(1.02, 1.02), duration: 1.2.seconds),
@@ -367,19 +369,19 @@ class _HeroSection extends StatelessWidget {
           child: Row(mainAxisSize: MainAxisSize.min, children: [
             const Icon(Icons.auto_awesome, color: AppColors.gold400, size: 14),
             const SizedBox(width: 8),
-            Text('SIGNATURE FLUTTER MASTERPIECE PORTFOLIO', style: GoogleFonts.jetBrainsMono(fontSize: 10, fontWeight: FontWeight.bold, color: AppColors.gold400, letterSpacing: 1.2)),
+            Text('SIGNATURE FLUTTER MASTERPIECE PORTFOLIO', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), fontWeight: FontWeight.bold, color: AppColors.gold400, letterSpacing: 1.2)),
           ]),
         ).animate().fadeIn(duration: 400.ms).slideY(begin: 0.3, curve: Curves.easeOut),
         const SizedBox(height: 20),
         // Headline with gold gradient
         _GradientText('Crafting Premium\nMobile Masterpieces',
           gradient: const LinearGradient(colors: [Colors.white, Colors.white]),
-          style: GoogleFonts.playfairDisplay(fontSize: 42, fontWeight: FontWeight.w600, height: 1.12, color: Colors.white),
+          style: GoogleFonts.playfairDisplay(fontSize: rfs(context, 42), fontWeight: FontWeight.w600, height: 1.12, color: Colors.white),
         ).animate(delay: 100.ms).fadeIn(duration: 600.ms).slideX(begin: -0.05),
         const SizedBox(height: 12),
         Text(
           'Expert Flutter Developer with 5+ years of mobile application engineering experience. Dedicated to architecting robust cross-platform applications featuring secure automated reciprocal workflows, high-precision performance optimizations, and native biometric security.',
-          style: GoogleFonts.inter(fontSize: 14, color: Colors.grey[400], height: 1.6),
+          style: GoogleFonts.inter(fontSize: rfs(context, 14), color: Colors.grey[400], height: 1.6),
         ).animate(delay: 200.ms).fadeIn(duration: 600.ms),
         const SizedBox(height: 20),
         // Stat badges
@@ -405,7 +407,7 @@ class _HeroSection extends StatelessWidget {
               child: Row(mainAxisSize: MainAxisSize.min, children: [
                 const Icon(Icons.videocam, color: Colors.black, size: 16),
                 const SizedBox(width: 8),
-                Text('SCHEDULE / START MEET', style: GoogleFonts.jetBrainsMono(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.black, letterSpacing: 1)),
+                Text('SCHEDULE / START MEET', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), fontWeight: FontWeight.bold, color: Colors.black, letterSpacing: 1)),
                 const SizedBox(width: 4),
                 Icon(isMeetOpen ? Icons.expand_less : Icons.expand_more, color: Colors.black, size: 16),
               ]),
@@ -424,7 +426,7 @@ class _HeroSection extends StatelessWidget {
               child: Row(mainAxisSize: MainAxisSize.min, children: [
                 const Icon(Icons.mail_outline, color: AppColors.gold400, size: 16),
                 const SizedBox(width: 8),
-                Text('SEND EMAIL', style: GoogleFonts.jetBrainsMono(fontSize: 10, fontWeight: FontWeight.bold, color: AppColors.gold300, letterSpacing: 1)),
+                Text('SEND EMAIL', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), fontWeight: FontWeight.bold, color: AppColors.gold300, letterSpacing: 1)),
               ]),
             ),
           ),
@@ -453,9 +455,9 @@ class _StatBadge extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(children: [
-        Text(label.toUpperCase(), style: GoogleFonts.jetBrainsMono(fontSize: 9, color: Colors.grey[500])),
+        Text(label.toUpperCase(), style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 9), color: Colors.grey[500])),
         const SizedBox(height: 4),
-        Text(value, style: GoogleFonts.jetBrainsMono(fontSize: 11, fontWeight: FontWeight.bold, color: AppColors.gold400)),
+        Text(value, style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 11), fontWeight: FontWeight.bold, color: AppColors.gold400)),
       ]),
     );
   }
@@ -480,9 +482,9 @@ class _MeetDropdown extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(16),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text('INSTANT DISPATCH HUB', style: GoogleFonts.jetBrainsMono(fontSize: 9, fontWeight: FontWeight.bold, color: AppColors.gold400, letterSpacing: 1.5)),
+        Text('INSTANT DISPATCH HUB', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 9), fontWeight: FontWeight.bold, color: AppColors.gold400, letterSpacing: 1.5)),
         const SizedBox(height: 4),
-        Text("Initialize meet or schedule with Nidheesh's official profiles.", style: GoogleFonts.inter(fontSize: 11, color: Colors.grey[400])),
+        Text("Initialize meet or schedule with Nidheesh's official profiles.", style: GoogleFonts.inter(fontSize: rfs(context, 11), color: Colors.grey[400])),
         Divider(color: Colors.grey[900], height: 20),
         // Teams card
         Container(
@@ -493,9 +495,9 @@ class _MeetDropdown extends StatelessWidget {
               Row(children: [
                 Container(width: 6, height: 6, decoration: const BoxDecoration(color: AppColors.teamsBlue, shape: BoxShape.circle)),
                 const SizedBox(width: 6),
-                Text('MICROSOFT TEAMS', style: GoogleFonts.jetBrainsMono(fontSize: 9, fontWeight: FontWeight.bold, color: AppColors.teamsBlue, letterSpacing: 1)),
+                Text('MICROSOFT TEAMS', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 9), fontWeight: FontWeight.bold, color: AppColors.teamsBlue, letterSpacing: 1)),
               ]),
-              Text('nidheeshkrishnap@outlook.com', style: GoogleFonts.inter(fontSize: 8, color: Colors.grey[600])),
+              Text('nidheeshkrishnap@outlook.com', style: GoogleFonts.inter(fontSize: rfs(context, 8), color: Colors.grey[600])),
             ]),
             const SizedBox(height: 8),
             Row(children: [
@@ -529,7 +531,7 @@ class _MeetBtn extends StatelessWidget {
           border: border != null ? Border.all(color: border!) : null,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Text(label, textAlign: TextAlign.center, style: GoogleFonts.jetBrainsMono(fontSize: 10, fontWeight: FontWeight.bold, color: fg)),
+        child: Text(label, textAlign: TextAlign.center, style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), fontWeight: FontWeight.bold, color: fg)),
       ),
     );
   }
@@ -611,7 +613,7 @@ class _Tab extends StatelessWidget {
         child: Text(
           label.toUpperCase(),
           style: GoogleFonts.jetBrainsMono(
-            fontSize: 10,
+            fontSize: rfs(context, 10),
             fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
             color: isActive ? AppColors.gold300 : Colors.grey[600],
             letterSpacing: 0.8,
@@ -634,10 +636,10 @@ class _ProjectExplorer extends StatelessWidget {
   Widget build(BuildContext context) {
     final project = kProjects.firstWhere((p) => p.id == selectedProjectId, orElse: () => kProjects[0]);
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text('SELECT ANY APP BELOW TO EXPLORE SPECIFICATIONS & ARCHITECTURE:', style: GoogleFonts.jetBrainsMono(fontSize: 10, fontWeight: FontWeight.bold, color: AppColors.gold400, letterSpacing: 1)),
+      Text('SELECT ANY APP BELOW TO EXPLORE SPECIFICATIONS & ARCHITECTURE:', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), fontWeight: FontWeight.bold, color: AppColors.gold400, letterSpacing: 1)),
       const SizedBox(height: 4),
-      Text('${project.title}: ', style: GoogleFonts.playfairDisplay(fontSize: 22, fontWeight: FontWeight.w500, color: Colors.white))
-        ..createChild(Text(project.subtitle, style: GoogleFonts.playfairDisplay(fontSize: 22, color: AppColors.gold400))),
+      Text('${project.title}: ', style: GoogleFonts.playfairDisplay(fontSize: rfs(context, 22), fontWeight: FontWeight.w500, color: Colors.white))
+        ..createChild(Text(project.subtitle, style: GoogleFonts.playfairDisplay(fontSize: rfs(context, 22), color: AppColors.gold400))),
       const SizedBox(height: 20),
       // Project grid
       LayoutBuilder(builder: (context, constraints) {
@@ -709,13 +711,13 @@ class _ProjectCardState extends State<_ProjectCard> {
               ),
               const SizedBox(width: 8),
               Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(widget.project.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: widget.isSelected ? AppColors.gold300 : Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis),
-                Text(widget.project.category.toUpperCase(), style: GoogleFonts.jetBrainsMono(fontSize: 8, color: Colors.grey[600])),
+                Text(widget.project.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: rfs(context, 12), color: widget.isSelected ? AppColors.gold300 : Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis),
+                Text(widget.project.category.toUpperCase(), style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 8), color: Colors.grey[600])),
               ])),
             ]),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Text('★ ${widget.project.rating.toStringAsFixed(1)}', style: GoogleFonts.jetBrainsMono(fontSize: 9, color: Colors.grey[600])),
-              Container(padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2), decoration: BoxDecoration(color: Colors.grey[950], borderRadius: BorderRadius.circular(4)), child: Text('${widget.project.installs} DL', style: GoogleFonts.jetBrainsMono(fontSize: 9, color: Colors.grey[400]))),
+              Text('★ ${widget.project.rating.toStringAsFixed(1)}', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 9), color: Colors.grey[600])),
+              Container(padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2), decoration: BoxDecoration(color: Colors.grey[950], borderRadius: BorderRadius.circular(4)), child: Text('${widget.project.installs} DL', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 9), color: Colors.grey[400]))),
             ]),
           ]),
         ),
@@ -763,25 +765,25 @@ class _ProjectDetail extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Text(project.title, style: GoogleFonts.playfairDisplay(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white)),
+          Text(project.title, style: GoogleFonts.playfairDisplay(fontSize: rfs(context, 16), fontWeight: FontWeight.w600, color: Colors.white)),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: BoxDecoration(color: AppColors.bgInput, border: Border.all(color: Colors.grey[800]!), borderRadius: BorderRadius.circular(8)),
-            child: Text('★ ${project.rating} (${project.installs} installs)', style: GoogleFonts.jetBrainsMono(fontSize: 10, color: Colors.grey[500])),
+            child: Text('★ ${project.rating} (${project.installs} installs)', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), color: Colors.grey[500])),
           ),
         ]),
         const SizedBox(height: 12),
-        Text(project.description, style: GoogleFonts.inter(fontSize: 12, color: Colors.grey[400], height: 1.5)),
+        Text(project.description, style: GoogleFonts.inter(fontSize: rfs(context, 12), color: Colors.grey[400], height: 1.5)),
         const SizedBox(height: 16),
-        Text('ENGINE STACK UTILIZED:', style: GoogleFonts.jetBrainsMono(fontSize: 9, color: Colors.grey[600], letterSpacing: 1)),
+        Text('ENGINE STACK UTILIZED:', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 9), color: Colors.grey[600], letterSpacing: 1)),
         const SizedBox(height: 8),
         Wrap(spacing: 6, runSpacing: 6, children: project.technologies.map((t) => Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           decoration: BoxDecoration(color: const Color(0xFF121319), border: Border.all(color: AppColors.gold400.withOpacity(0.1)), borderRadius: BorderRadius.circular(8)),
-          child: Text(t, style: GoogleFonts.jetBrainsMono(fontSize: 10, color: AppColors.gold300)),
+          child: Text(t, style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), color: AppColors.gold300)),
         )).toList()),
         const SizedBox(height: 16),
-        Text('SIGNATURE PERFORMANCE ACHIEVEMENTS:', style: GoogleFonts.jetBrainsMono(fontSize: 9, color: Colors.grey[600], letterSpacing: 1)),
+        Text('SIGNATURE PERFORMANCE ACHIEVEMENTS:', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 9), color: Colors.grey[600], letterSpacing: 1)),
         const SizedBox(height: 8),
         LayoutBuilder(builder: (ctx, constraints) {
           final twoCol = constraints.maxWidth > 500;
@@ -793,7 +795,7 @@ class _ProjectDetail extends StatelessWidget {
               child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 const Icon(Icons.check_circle, color: AppColors.gold400, size: 14),
                 const SizedBox(width: 8),
-                Expanded(child: Text(f, style: GoogleFonts.inter(fontSize: 11, color: Colors.grey[400], height: 1.4))),
+                Expanded(child: Text(f, style: GoogleFonts.inter(fontSize: rfs(ctx, 11), color: Colors.grey[400], height: 1.4))),
               ]),
             ),
           )).toList());
@@ -823,7 +825,7 @@ class _ResumeTabState extends State<_ResumeTab> {
         decoration: BoxDecoration(color: const Color(0xFF0b0c11), border: Border.all(color: const Color(0xFF1d1f2b)), borderRadius: BorderRadius.circular(20)),
         padding: const EdgeInsets.all(20),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('SKILLS ECOSYSTEM', style: GoogleFonts.jetBrainsMono(fontSize: 10, fontWeight: FontWeight.bold, color: AppColors.gold400, letterSpacing: 2)),
+          Text('SKILLS ECOSYSTEM', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), fontWeight: FontWeight.bold, color: AppColors.gold400, letterSpacing: 2)),
           const SizedBox(height: 12),
           LayoutBuilder(builder: (ctx, constraints) {
             final cols = constraints.maxWidth > 500 ? 3 : 2;
@@ -840,7 +842,7 @@ class _ResumeTabState extends State<_ResumeTab> {
         ]),
       ),
       const SizedBox(height: 20),
-      Text('PROFESSIONAL EXPERIENCE', style: GoogleFonts.jetBrainsMono(fontSize: 10, fontWeight: FontWeight.bold, color: AppColors.gold400, letterSpacing: 2)),
+      Text('PROFESSIONAL EXPERIENCE', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), fontWeight: FontWeight.bold, color: AppColors.gold400, letterSpacing: 2)),
       const SizedBox(height: 12),
       ...kJobs.map((job) => Padding(
         padding: const EdgeInsets.only(bottom: 10),
@@ -876,9 +878,9 @@ class _SkillCard extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(color: const Color(0xFF10121d), border: Border.all(color: Colors.grey[900]!), borderRadius: BorderRadius.circular(16)),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        Text(label.toUpperCase(), style: GoogleFonts.jetBrainsMono(fontSize: 9, color: Colors.grey[600])),
-        Text(title, style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600, color: gold ? AppColors.gold300 : Colors.white)),
-        Text(desc, style: GoogleFonts.inter(fontSize: 10, color: Colors.grey[500]), maxLines: 2, overflow: TextOverflow.ellipsis),
+        Text(label.toUpperCase(), style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 9), color: Colors.grey[600])),
+        Text(title, style: GoogleFonts.inter(fontSize: rfs(context, 12), fontWeight: FontWeight.w600, color: gold ? AppColors.gold300 : Colors.white)),
+        Text(desc, style: GoogleFonts.inter(fontSize: rfs(context, 10), color: Colors.grey[500]), maxLines: 2, overflow: TextOverflow.ellipsis),
       ]),
     );
   }
@@ -914,14 +916,14 @@ class _JobAccordion extends StatelessWidget {
               ),
               const SizedBox(width: 14),
               Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(job.role, style: GoogleFonts.playfairDisplay(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.white)),
+                Text(job.role, style: GoogleFonts.playfairDisplay(fontSize: rfs(context, 14), fontWeight: FontWeight.w600, color: Colors.white)),
                 const SizedBox(height: 2),
                 Row(children: [
-                  Text(job.company, style: GoogleFonts.inter(fontSize: 12, color: AppColors.gold300, fontWeight: FontWeight.w500)),
+                  Text(job.company, style: GoogleFonts.inter(fontSize: rfs(context, 12), color: AppColors.gold300, fontWeight: FontWeight.w500)),
                   Text(' • ', style: TextStyle(color: Colors.grey[700])),
                   const Icon(Icons.calendar_today, size: 11, color: Colors.grey),
                   const SizedBox(width: 2),
-                  Flexible(child: Text(job.period, style: GoogleFonts.inter(fontSize: 11, color: Colors.grey[500]), overflow: TextOverflow.ellipsis)),
+                  Flexible(child: Text(job.period, style: GoogleFonts.inter(fontSize: rfs(context, 11), color: Colors.grey[500]), overflow: TextOverflow.ellipsis)),
                 ]),
               ])),
               Icon(isExpanded ? Icons.expand_less : Icons.expand_more, color: isExpanded ? AppColors.gold400 : Colors.grey[600]),
@@ -933,14 +935,14 @@ class _JobAccordion extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('CORE CONTRIBUTIONS', style: GoogleFonts.jetBrainsMono(fontSize: 9, color: Colors.grey[600], letterSpacing: 1)),
+              Text('CORE CONTRIBUTIONS', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 9), color: Colors.grey[600], letterSpacing: 1)),
               const SizedBox(height: 8),
               ...job.bullets.map((b) => Padding(
                 padding: const EdgeInsets.only(bottom: 6),
                 child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   const Icon(Icons.check_circle, color: AppColors.gold400, size: 14),
                   const SizedBox(width: 8),
-                  Expanded(child: Text(b, style: GoogleFonts.inter(fontSize: 12, color: Colors.grey[300], height: 1.4))),
+                  Expanded(child: Text(b, style: GoogleFonts.inter(fontSize: rfs(context, 12), color: Colors.grey[300], height: 1.4))),
                 ]),
               )),
               const SizedBox(height: 12),
@@ -948,16 +950,16 @@ class _JobAccordion extends StatelessWidget {
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(color: const Color(0xFF08090e), border: Border.all(color: Colors.grey[900]!), borderRadius: BorderRadius.circular(12)),
                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: job.metrics.map((m) => Column(children: [
-                  Text(m['label']!, style: GoogleFonts.jetBrainsMono(fontSize: 9, color: Colors.grey[700])),
+                  Text(m['label']!, style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 9), color: Colors.grey[700])),
                   const SizedBox(height: 4),
-                  Text(m['value']!, style: GoogleFonts.jetBrainsMono(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.white)),
+                  Text(m['value']!, style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 11), fontWeight: FontWeight.bold, color: Colors.white)),
                 ])).toList()),
               ),
               const SizedBox(height: 10),
               Wrap(spacing: 6, runSpacing: 6, children: job.techUsed.map((t) => Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(color: const Color(0xFF141622), border: Border.all(color: AppColors.gold400.withOpacity(0.1)), borderRadius: BorderRadius.circular(8)),
-                child: Text(t, style: GoogleFonts.jetBrainsMono(fontSize: 10, color: AppColors.gold300)),
+                child: Text(t, style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), color: AppColors.gold300)),
               )).toList()),
             ]),
           ),
@@ -974,7 +976,7 @@ class _EducationCard extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(color: const Color(0xFF0b0c11), border: Border.all(color: const Color(0xFF1d1f2b)), borderRadius: BorderRadius.circular(16)),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [const Icon(Icons.school, color: AppColors.gold400, size: 18), const SizedBox(width: 8), Text('Education Milestones', style: GoogleFonts.playfairDisplay(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.white))]),
+        Row(children: [const Icon(Icons.school, color: AppColors.gold400, size: 18), const SizedBox(width: 8), Text('Education Milestones', style: GoogleFonts.playfairDisplay(fontSize: rfs(context, 13), fontWeight: FontWeight.w600, color: Colors.white))]),
         const SizedBox(height: 14),
         _EduItem('Master of Computer Applications (MCA)', 'Bharathiar University, Coimbatore', 'Graduated: 2012 – 2015'),
         const SizedBox(height: 10),
@@ -995,9 +997,9 @@ class _EduItem extends StatelessWidget {
       Container(width: 2, height: 60, color: AppColors.gold500.withOpacity(0.3)),
       const SizedBox(width: 12),
       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(title, style: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.white)),
-        Text(school, style: GoogleFonts.inter(fontSize: 11, color: Colors.grey[400])),
-        Text(period, style: GoogleFonts.jetBrainsMono(fontSize: 10, color: AppColors.gold300)),
+        Text(title, style: GoogleFonts.inter(fontSize: rfs(context, 12), fontWeight: FontWeight.w600, color: Colors.white)),
+        Text(school, style: GoogleFonts.inter(fontSize: rfs(context, 11), color: Colors.grey[400])),
+        Text(period, style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), color: AppColors.gold300)),
       ]),
     ]);
   }
@@ -1010,11 +1012,11 @@ class _PitchCard extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(color: const Color(0xFF0b0c11), border: Border.all(color: const Color(0xFF1d1f2b)), borderRadius: BorderRadius.circular(16)),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Row(children: [const Icon(Icons.emoji_events, color: AppColors.gold400, size: 18), const SizedBox(width: 8), Text('Professional Pitch', style: GoogleFonts.playfairDisplay(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.white))]),
+        Row(children: [const Icon(Icons.emoji_events, color: AppColors.gold400, size: 18), const SizedBox(width: 8), Text('Professional Pitch', style: GoogleFonts.playfairDisplay(fontSize: rfs(context, 13), fontWeight: FontWeight.w600, color: Colors.white))]),
         const SizedBox(height: 10),
-        Text('"Over the past 5 years, I\'ve dedicated my craft to writing clean, reliable dart repositories that scale cleanly from individual single-view clients to multi-tenant ecosystems. Crafting high-fidelity mockups of premium elite clubs is my signature."', style: GoogleFonts.inter(fontSize: 12, color: Colors.grey[400], height: 1.5, fontStyle: FontStyle.italic)),
+        Text('"Over the past 5 years, I\'ve dedicated my craft to writing clean, reliable dart repositories that scale cleanly from individual single-view clients to multi-tenant ecosystems. Crafting high-fidelity mockups of premium elite clubs is my signature."', style: GoogleFonts.inter(fontSize: rfs(context, 12), color: Colors.grey[400], height: 1.5, fontStyle: FontStyle.italic)),
         const SizedBox(height: 10),
-        Align(alignment: Alignment.centerRight, child: Text('Available for Senior / Lead Flutter roles worldwide.', style: GoogleFonts.jetBrainsMono(fontSize: 9, color: Colors.grey[600]))),
+        Align(alignment: Alignment.centerRight, child: Text('Available for Senior / Lead Flutter roles worldwide.', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 9), color: Colors.grey[600]))),
       ]),
     );
   }
@@ -1031,22 +1033,22 @@ class _CopilotTab extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(color: const Color(0xFF0b0c11), border: Border.all(color: const Color(0xFF1b1c2b)), borderRadius: BorderRadius.circular(16)),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text('INTERACTIVE PORTFOLIO COPILOT', style: GoogleFonts.jetBrainsMono(fontSize: 10, fontWeight: FontWeight.bold, color: AppColors.gold400, letterSpacing: 1.5)),
+        Text('INTERACTIVE PORTFOLIO COPILOT', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), fontWeight: FontWeight.bold, color: AppColors.gold400, letterSpacing: 1.5)),
         const SizedBox(height: 4),
-        Text('Interactive AI Chat', style: GoogleFonts.playfairDisplay(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white)),
+        Text('Interactive AI Chat', style: GoogleFonts.playfairDisplay(fontSize: rfs(context, 20), fontWeight: FontWeight.w500, color: Colors.white)),
         const SizedBox(height: 4),
-        Text('Ask my customized Gemini virtual assistant any direct questions regarding my MCA, Flutter state selectors, cross-platform performance practices, or mobile achievements.', style: GoogleFonts.inter(fontSize: 12, color: Colors.grey[400])),
+        Text('Ask my customized Gemini virtual assistant any direct questions regarding my MCA, Flutter state selectors, cross-platform performance practices, or mobile achievements.', style: GoogleFonts.inter(fontSize: rfs(context, 12), color: Colors.grey[400])),
         const SizedBox(height: 20),
         Row(children: [
           Container(width: 6, height: 6, decoration: const BoxDecoration(color: AppColors.gold400, shape: BoxShape.circle))
               .animate(onPlay: (c) => c.repeat()).fadeIn(duration: 600.ms).then().fadeOut(duration: 600.ms),
           const SizedBox(width: 8),
-          Text('INTERACTIVE GEMINI AI COPILOT', style: GoogleFonts.jetBrainsMono(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.grey[300])),
+          Text('INTERACTIVE GEMINI AI COPILOT', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 11), fontWeight: FontWeight.bold, color: Colors.grey[300])),
           const Spacer(),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(color: AppColors.gold500.withOpacity(0.1), border: Border.all(color: AppColors.gold400.withOpacity(0.1)), borderRadius: BorderRadius.circular(6)),
-            child: Text('ACTIVE RESPONSE MODE', style: GoogleFonts.jetBrainsMono(fontSize: 8, color: AppColors.gold400, letterSpacing: 1)),
+            child: Text('ACTIVE RESPONSE MODE', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 8), color: AppColors.gold400, letterSpacing: 1)),
           ),
         ]),
         Divider(color: Colors.grey[900], height: 24),
@@ -1055,8 +1057,8 @@ class _CopilotTab extends StatelessWidget {
           child: Column(children: [
             const Icon(Icons.smart_toy_outlined, color: AppColors.gold400, size: 48),
             const SizedBox(height: 12),
-            Text('AI Chat requires a backend server', style: GoogleFonts.inter(fontSize: 14, color: Colors.grey[500])),
-            Text('Run the React + Node.js version to use Gemini AI', style: GoogleFonts.jetBrainsMono(fontSize: 11, color: Colors.grey[700])),
+            Text('AI Chat requires a backend server', style: GoogleFonts.inter(fontSize: rfs(context, 14), color: Colors.grey[500])),
+            Text('Run the React + Node.js version to use Gemini AI', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 11), color: Colors.grey[700])),
           ]),
         )),
       ]),
@@ -1075,17 +1077,17 @@ class _Footer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 40),
       decoration: BoxDecoration(border: Border(top: BorderSide(color: const Color(0xFF1b1c2b)))),
       child: Column(children: [
-        Text('NIDHEESH KRISHNA N • EXCLUSIVE PORTFOLIO WORKSPACE', style: GoogleFonts.jetBrainsMono(fontSize: 10, color: AppColors.gold400.withOpacity(0.8), letterSpacing: 2)),
+        Text('NIDHEESH KRISHNA N • EXCLUSIVE PORTFOLIO WORKSPACE', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), color: AppColors.gold400.withOpacity(0.8), letterSpacing: 2)),
         const SizedBox(height: 12),
         Wrap(spacing: 16, runSpacing: 8, alignment: WrapAlignment.center, children: [
-          Text('Phone: +91 9946185174', style: GoogleFonts.jetBrainsMono(fontSize: 10, color: Colors.grey[600])),
+          Text('Phone: +91 9946185174', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), color: Colors.grey[600])),
           Text('|', style: TextStyle(color: Colors.grey[800])),
-          Text('Email: nidheeshkrishnap@outlook.com', style: GoogleFonts.jetBrainsMono(fontSize: 10, color: Colors.grey[600])),
+          Text('Email: nidheeshkrishnap@outlook.com', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), color: Colors.grey[600])),
           Text('|', style: TextStyle(color: Colors.grey[800])),
-          Text('LinkedIn: linkedin.com/in/nidheesh-krishna-n-6a141315a', style: GoogleFonts.jetBrainsMono(fontSize: 10, color: Colors.grey[600])),
+          Text('LinkedIn: linkedin.com/in/nidheesh-krishna-n-6a141315a', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), color: Colors.grey[600])),
         ]),
         const SizedBox(height: 8),
-        Text('Build completed using Flutter • Dart ', style: GoogleFonts.inter(fontSize: 10, color: Colors.grey[800])),
+        Text('Build completed using Flutter • Dart ', style: GoogleFonts.inter(fontSize: rfs(context, 10), color: Colors.grey[800])),
       ]),
     );
   }
@@ -1115,7 +1117,7 @@ class _WhatsAppButton extends StatelessWidget {
                 .animate(onPlay: (c) => c.repeat()).fadeIn(duration: 400.ms).then().fadeOut(duration: 400.ms)),
           ]),
           const SizedBox(width: 8),
-          Text('MESSAGE NIDHEESH', style: GoogleFonts.jetBrainsMono(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.2)),
+          Text('MESSAGE NIDHEESH', style: GoogleFonts.jetBrainsMono(color: Colors.white, fontSize: rfs(context, 10), fontWeight: FontWeight.bold, letterSpacing: 1.2)),
         ]),
       ),
     ).animate(delay: 1.seconds).scale(curve: Curves.elasticOut, duration: 800.ms);
@@ -1172,15 +1174,15 @@ class _EmailModalState extends State<_EmailModal> {
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text('IN-SITE MAIL FACILITY', style: GoogleFonts.jetBrainsMono(fontSize: 9, fontWeight: FontWeight.bold, color: AppColors.gold400, letterSpacing: 1.5)),
+                  Text('IN-SITE MAIL FACILITY', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 9), fontWeight: FontWeight.bold, color: AppColors.gold400, letterSpacing: 1.5)),
                   const SizedBox(height: 4),
                   Row(children: [
                     const Icon(Icons.email, color: AppColors.gold400, size: 18),
                     const SizedBox(width: 8),
-                    Text('Send Message to Nidheesh', style: GoogleFonts.playfairDisplay(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white)),
+                    Text('Send Message to Nidheesh', style: GoogleFonts.playfairDisplay(fontSize: rfs(context, 20), fontWeight: FontWeight.w500, color: Colors.white)),
                   ]),
                   const SizedBox(height: 4),
-                  Text('Formulate your collaboration proposal, technical job details, or interview coordinate links directly.', style: GoogleFonts.inter(fontSize: 12, color: Colors.grey[400])),
+                  Text('Formulate your collaboration proposal, technical job details, or interview coordinate links directly.', style: GoogleFonts.inter(fontSize: rfs(context, 12), color: Colors.grey[400])),
                 ]),
                 GestureDetector(
                   onTap: widget.onClose,
@@ -1207,7 +1209,7 @@ class _EmailModalState extends State<_EmailModal> {
                     child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       const Icon(Icons.send, color: Colors.black, size: 14),
                       const SizedBox(width: 8),
-                      Text(_sending ? 'OPENING MAIL CLIENT...' : 'LAUNCH NATIVE DISPATCH', style: GoogleFonts.jetBrainsMono(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.black)),
+                      Text(_sending ? 'OPENING MAIL CLIENT...' : 'LAUNCH NATIVE DISPATCH', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), fontWeight: FontWeight.bold, color: Colors.black)),
                     ]),
                   ),
                 )),
@@ -1217,12 +1219,12 @@ class _EmailModalState extends State<_EmailModal> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                     decoration: BoxDecoration(color: AppColors.bgInput, border: Border.all(color: AppColors.gold500.withOpacity(0.15)), borderRadius: BorderRadius.circular(14)),
-                    child: Text('Copy draft', style: GoogleFonts.jetBrainsMono(fontSize: 10, fontWeight: FontWeight.bold, color: AppColors.gold300)),
+                    child: Text('Copy draft', style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 10), fontWeight: FontWeight.bold, color: AppColors.gold300)),
                   ),
                 ),
               ]),
               const SizedBox(height: 8),
-              Text('* Opens standard local client (Outlook, Mail, etc.) pre-filled.', textAlign: TextAlign.center, style: GoogleFonts.inter(fontSize: 10, color: Colors.grey[600])),
+              Text('* Opens standard local client (Outlook, Mail, etc.) pre-filled.', textAlign: TextAlign.center, style: GoogleFonts.inter(fontSize: rfs(context, 10), color: Colors.grey[600])),
             ]),
           ),
         ]),
@@ -1232,15 +1234,15 @@ class _EmailModalState extends State<_EmailModal> {
 
   Widget _field(String label, String hint, TextEditingController ctrl, {int maxLines = 1, bool required = false}) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(label, style: GoogleFonts.jetBrainsMono(fontSize: 9, fontWeight: FontWeight.bold, color: AppColors.gold400.withOpacity(0.8), letterSpacing: 1)),
+      Text(label, style: GoogleFonts.jetBrainsMono(fontSize: rfs(context, 9), fontWeight: FontWeight.bold, color: AppColors.gold400.withOpacity(0.8), letterSpacing: 1)),
       const SizedBox(height: 6),
       TextField(
         controller: ctrl,
         maxLines: maxLines,
-        style: GoogleFonts.inter(color: Colors.white, fontSize: 13),
+        style: GoogleFonts.inter(color: Colors.white, fontSize: rfs(context, 13)),
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: GoogleFonts.inter(color: Colors.grey[700], fontSize: 12),
+          hintStyle: GoogleFonts.inter(color: Colors.grey[700], fontSize: rfs(context, 12)),
           filled: true,
           fillColor: AppColors.bgInput,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.grey[900]!)),
