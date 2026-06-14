@@ -11,7 +11,7 @@
     "lint": "tsc --noEmit",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "build:flutter": "flutter build web --release",
+    "build:flutter": "flutter build web --release --base-href=/nidheesh-krishna-n-portfolio/",
     "deploy:flutter": "gh-pages -d build/web"
   },
   "dependencies": {

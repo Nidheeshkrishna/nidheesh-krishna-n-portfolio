@@ -63,19 +63,12 @@ export default function App() {
   const handleDownloadCV = async () => {
     const now = new Date();
     const ts = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}_${String(now.getHours()).padStart(2,'0')}${String(now.getMinutes()).padStart(2,'0')}${String(now.getSeconds()).padStart(2,'0')}`;
-    try {
-      const res = await fetch("/assets/Nidheesh_Krishna_CV.pdf", { method: "HEAD" });
-      if (res.ok) {
-        const link = document.createElement("a");
-        link.href = "/assets/Nidheesh_Krishna_CV.pdf";
-        link.download = `Nidheesh_Krishna_CV_${ts}.pdf`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        return;
-      }
-    } catch (_) {}
-    window.print();
+    const link = document.createElement("a");
+    link.href = "/assets/Nidheesh_Krishna_CV.pdf";
+    link.download = `Nidheesh_Krishna_CV_${ts}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const handleSendEmailSubmit = (e: React.FormEvent) => {
@@ -195,7 +188,7 @@ export default function App() {
             <button 
               onClick={handleDownloadCV}
               className="flex items-center space-x-1.5 text-black hover:text-black transition-all bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 font-mono tracking-wider uppercase font-bold text-[11px] px-4 py-2.5 rounded-full hover:brightness-110 hover:shadow-lg hover:shadow-gold-500/20 cursor-pointer animate-pulse"
-              title="Download CV as PDF and avoid UI screen"
+              title="Save CV as PDF"
             >
               <FileDown className="w-4 h-4 text-black" />
               <span>Download CV as PDF</span>

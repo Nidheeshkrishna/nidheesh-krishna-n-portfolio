@@ -156,7 +156,7 @@ class _PortfolioHomeState extends State<PortfolioHome> {
   Future<void> _downloadCV() async {
     final now = DateTime.now();
     final ts = '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}_${now.hour.toString().padLeft(2, '0')}${now.minute.toString().padLeft(2, '0')}${now.second.toString().padLeft(2, '0')}';
-    downloadFile('assets/assets/Nidheesh_Krishna_CV.pdf', 'Nidheesh_Krishna_CV_$ts.pdf');
+    downloadFile('assets/Nidheesh_Krishna_CV.pdf', 'Nidheesh_Krishna_CV_$ts.pdf');
   }
 }
 
