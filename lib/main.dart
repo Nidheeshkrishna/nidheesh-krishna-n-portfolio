@@ -1085,7 +1085,7 @@ class _Footer extends StatelessWidget {
           Text('LinkedIn: linkedin.com/in/nidheesh-krishna-n-6a141315a', style: GoogleFonts.jetBrainsMono(fontSize: 10, color: Colors.grey[600])),
         ]),
         const SizedBox(height: 8),
-        Text('Build completed using Flutter • Dart • flutter_animate • google_fonts', style: GoogleFonts.inter(fontSize: 10, color: Colors.grey[800])),
+        Text('Build completed using Flutter • Dart ', style: GoogleFonts.inter(fontSize: 10, color: Colors.grey[800])),
       ]),
     );
   }
