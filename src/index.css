@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Cinzel:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: "Cinzel", Georgia, serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Custom luxury color palettes */
+  --color-gold-50: #fbf8eb;
+  --color-gold-100: #f4edd0;
+  --color-gold-200: #e8d7a1;
+  --color-gold-300: #d9be6d;
+  --color-gold-400: #c9a244;
+  --color-gold-500: #b5892b;
+  --color-gold-600: #9c6e20;
+  --color-gold-700: #7d5218;
+  --color-gold-800: #5e3a13;
+  --color-gold-900: #42260d;
+
+  --color-luxury-black: #08080a;
+  --color-luxury-card: #0e0f14;
+  --color-luxury-border: #1e202b;
+}
+
+@layer base {
+  body {
+    background: radial-gradient(circle at 50% 0%, #0c0e1e 0%, var(--color-luxury-black) 80%);
+    color: #f3f4f6;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Custom clean scrollbars */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #252836;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3c4257;
+  }
+}
+
+/* Animations & glassmorphism custom effects */
+.glass-panel {
+  background: rgba(14, 15, 20, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(217, 190, 109, 0.15);
+}
+
+.gold-glow {
+  box-shadow: 0 0 20px rgba(181, 137, 43, 0.15);
+}
+
+.gold-text-gradient {
+  background: linear-gradient(135deg, #f4edd0 0%, #d9be6d 50%, #b5892b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media print {
+  /* Suppress default page shadows, backgrounds, and glow grids */
+  html, body {
+    background-color: #ffffff !important;
+    background-image: none !important;
+    color: #111111 !important;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Make sure background is fully white and clear of luxury black gradients */
+  div {
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #111111 !important;
+    background: #ffffff !important;
+  }
+  
+  @page {
+    size: letter portrait;
+    margin: 1.6cm 1.8cm 1.6cm 1.8cm;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #000000 !important;
+    font-family: Georgia, serif !important;
+    page-break-after: avoid;
+  }
+}
+
+.print-only {
+  display: none;
+}
+
